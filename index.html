@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOVE YOU ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #09000d;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Trái tim */
+.heart {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    background: #ff174d;
+    transform: rotate(-45deg);
+    animation: heartbeat 1s infinite;
+    box-shadow: 0 0 30px #ff174d,
+                0 0 70px #ff174d;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    background: #ff174d;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -85px;
+    left: 0;
+}
+
+.heart::after {
+    left: 85px;
+    top: 0;
+}
+
+@keyframes heartbeat {
+    0%, 100% { scale: 1; }
+    50% { scale: 1.12; }
+}
+
+/* Chữ LOVE chạy vòng quanh */
+.border-text {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    animation: rotate 8s linear infinite;
+}
+
+.border-text span {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform-origin: 0 150px;
+    color: #ff80ab;
+    font-size: 17px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff174d;
+}
+
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+/* YOU ở giữa */
+.you {
+    position: relative;
+    z-index: 5;
+    color: white;
+    font-size: 42px;
+    font-weight: 900;
+    text-shadow: 0 0 10px #ff174d,
+                 0 0 25px #ff174d;
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+    from { scale: 1; }
+    to { scale: 1.15; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="heart"></div>
+    <div class="border-text" id="border"></div>
+    <div class="you">YOU</div>
+</div>
+
+<script>
+const border = document.getElementById("border");
+
+for (let i = 0; i < 36; i++) {
+    const span = document.createElement("span");
+    span.textContent = "LOVE";
+    span.style.transform =
+        `rotate(${i * 10}deg)`;
+    border.appendChild(span);
+}
+</script>
+
+</body>
+</html>
